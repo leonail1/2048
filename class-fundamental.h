@@ -2,13 +2,13 @@
 //  class-fundamental.h
 //  2048
 //
-//  Created by 林正刚 on 2022/11/17.
+//  Created by 木林 on 2022/11/17.
 //
 #include"Parameter.h"
 #ifndef class_fundamental_h
 #define class_fundamental_h
-using arr=int[Map_size][Map_size];
-using arr1=int[Map_size];
+using arr=int[Map_size][Map_size];//arr 是指向Map_size*Map_size的二维数组的二维指针的别名，相当于int**
+using arr1=int[Map_size];//同上，相当于int*
 
 class Fundamental{
 public:
@@ -17,18 +17,20 @@ public:
     bool Isover(int (&MAP)[Map_size][Map_size]);//判断游戏是否结束，结束返回1
     bool Iswin(int(&MAP)[Map_size][Map_size]);//判断是否赢，并询问是否继续
     void Rand(int(&MAP)[Map_size][Map_size]);//地图随机生成2或者4，4概率较小
-    double rand021();//返回0-1之间的随机数
-    double randA2B(int start,int end);//返回start到end之间的随机整数
     void Generate(int(&MAP)[Map_size][Map_size]);//在屏幕上显示地图
     int GetUserInput();//接受用户输入并转化成宏定义的数字
+    arr& ReturnMap();//返回MAP地图
+    arr1& ReturnPos();//返回POS数组
+protected:
+    double rand021();//返回0-1之间的随机数
+    double randA2B(int start,int end);//返回start到end之间的随机整数
     void HelpMessage();//帮助信息
     void Print(int cnt);//打印函数，打印第cnt个数
     void PrintMap();//打印整个地图
-    virtual void Move(int direction,int position)=0;
+    virtual void Move(int direction,int position)=0;//纯虚函数，在子类中各自定义
     virtual void Combine(int direction,int position)=0;
     virtual void Gather(int direction,int position)=0;
-    arr& ReturnMap();//返回MAP地图
-    arr1& ReturnPos();//返回POS数组
+    
 protected:
     int MAP[Map_size][Map_size];
     int POS[4]={0,Map_size-1,0,Map_size-1};//把up，down转为position
