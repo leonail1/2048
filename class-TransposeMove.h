@@ -1,8 +1,8 @@
-//  转置矩阵派生类
+//  转置矩阵派生类，以转置矩阵作为核心算法
 //  class-TransposeMove.h
 //  2048
 //
-//  Created by 林正刚 on 2022/11/17.
+//  Created by 木林 on 2022/11/17.
 //
 
 #ifndef class_TransposeMove_h
@@ -10,9 +10,10 @@
 #include"Parameter.h"
 #include"class-fundamental.h"
 
-class TransposeMove : public Fundamental{
+class TransposeMove final: public Fundamental{
 public:
     void Move(int direction,int position);//根据用户输入进行移动
+private:
     void Gather(int direction,int position);//把所有有数字的格子向一个方向聚集，不合并
     void Combine(int direction,int position);//合并操作
     void Transpose(int(&MAP)[Map_size][Map_size]);//矩阵转置
